@@ -20,12 +20,12 @@ export const metadata: Metadata = {
     "Astral Couture is a bespoke and ready-to-wear fashion label in Ibadan, Nigeria, specialising in bridal gowns, structured corsetry and aso-ebi, with remote fittings for clients abroad.",
 };
 
-// Runs before paint so the saved (or system) theme never flashes.
-const themeScript = `(function(){try{var t=localStorage.getItem('theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.dataset.theme=t}catch(e){}})()`;
+// Runs before paint so the saved theme never flashes. Dark unless the visitor has chosen otherwise.
+const themeScript = `(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark'){t='dark'}document.documentElement.dataset.theme=t}catch(e){}})()`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${jost.variable}`} suppressHydrationWarning>
+    <html lang="en" data-theme="dark" className={`${cormorant.variable} ${jost.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>

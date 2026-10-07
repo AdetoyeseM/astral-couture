@@ -24,12 +24,12 @@ export default function Hero() {
           <motion.p variants={rise} className="eyebrow mb-7 !text-[var(--gold-lit)]">
             Ibadan, Nigeria &nbsp;·&nbsp; Serving clients worldwide
           </motion.p>
-          <motion.h1 variants={rise} className="display text-[3.2rem] leading-[0.98] [text-shadow:0_2px_30px_rgba(0,0,0,0.55)] sm:text-7xl lg:text-[5.6rem]">
+          <motion.h1 variants={rise} className="display text-[3.2rem] leading-[0.98] [text-shadow:0_2px_18px_rgba(0,0,0,0.5)] sm:text-7xl lg:text-[5.6rem]">
             Cut with <span className="italic text-[var(--gold-lit)]">precision.</span>
             <br />
             Sewn to be <span className="italic">remembered.</span>
           </motion.h1>
-          <motion.p variants={rise} className="mt-7 max-w-xl text-lg leading-relaxed text-white/85 [text-shadow:0_1px_14px_rgba(0,0,0,0.6)]">
+          <motion.p variants={rise} className="mt-7 max-w-xl text-lg leading-relaxed text-white/85 [text-shadow:0_1px_8px_rgba(0,0,0,0.6)]">
             Astral Couture is a bespoke, bridal and ready-to-wear label by Idowu Esther. Every garment is drafted, cut,
             fitted and finished in-house, with advanced corsetry that holds the shape you imagined.
           </motion.p>

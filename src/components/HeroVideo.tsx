@@ -19,7 +19,10 @@ const PHI = 0.6180339887; // golden-ratio stagger so panels never move in lockst
 function bestCols(w: number, h: number) {
   let best = 1;
   let bestErr = Infinity;
-  for (let c = 1; c <= Math.min(MAX_COLS, heroClips.length); c++) {
+  // Each panel is a live video decode (plus a preloaded one), so weaker machines get fewer panels.
+  const cores = navigator.hardwareConcurrency || 8;
+  const cap = cores <= 4 ? 2 : 3;
+  for (let c = 1; c <= Math.min(cap, heroClips.length); c++) {
     const err = Math.abs(Math.log(w / c / h / CLIP_ASPECT));
     if (err < bestErr) {
       best = c;
@@ -280,12 +283,12 @@ export default function HeroVideo({ active, scroll }: { active: boolean; scroll:
 
   // Scroll out: the film zooms, softens and dims, handing the page back to the text.
   const scale = useTransform(scroll, [0, 1], [1, 1.1]);
-  const filter = useTransform(scroll, [0, 1], ["blur(0px) brightness(1)", "blur(6px) brightness(0.55)"]);
+  const dim = useTransform(scroll, [0, 1], [0, 0.6]);
 
   const grid = { gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` };
   return (
     <>
-      <motion.div aria-hidden style={animated ? { scale, filter } : undefined} className="absolute inset-0 grid origin-center" >
+      <motion.div aria-hidden style={animated ? { scale } : undefined} className="absolute inset-0 grid origin-center will-change-transform">
         <div className="grid h-full" style={grid}>
           {Array.from({ length: cols }, (_, c) => (
             <Column
@@ -305,25 +308,23 @@ export default function HeroVideo({ active, scroll }: { active: boolean; scroll:
         </div>
       </motion.div>
 
-      {/* Dark overlay: an even tint, a left-weighted ramp behind the headline, a vignette, and a faint gold wash for warmth. */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 bg-[#080706]/62" />
+      {/* Dark overlay, as ONE layer: an even tint, a left-weighted ramp behind the headline, top/bottom falloff, a vignette and a faint gold wash. */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           background: [
-            "linear-gradient(90deg, rgba(8,7,6,0.94) 0%, rgba(8,7,6,0.82) 38%, rgba(8,7,6,0.5) 72%, rgba(8,7,6,0.32) 100%)",
             "linear-gradient(0deg, rgba(8,7,6,0.95) 0%, rgba(8,7,6,0.6) 25%, rgba(8,7,6,0) 50%)",
             "linear-gradient(180deg, rgba(8,7,6,0.78) 0%, rgba(8,7,6,0) 26%)",
+            "linear-gradient(90deg, rgba(8,7,6,0.94) 0%, rgba(8,7,6,0.82) 38%, rgba(8,7,6,0.5) 72%, rgba(8,7,6,0.32) 100%)",
             "radial-gradient(120% 90% at 50% 45%, rgba(0,0,0,0) 35%, rgba(0,0,0,0.7) 100%)",
+            "linear-gradient(135deg, rgba(230,200,135,0.1), rgba(230,200,135,0) 55%)",
+            "linear-gradient(rgba(8,7,6,0.62), rgba(8,7,6,0.62))",
           ].join(", "),
         }}
       />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 mix-blend-soft-light"
-        style={{ background: "linear-gradient(135deg, rgba(230,200,135,0.28), rgba(230,200,135,0) 55%)" }}
-      />
+      {/* Scrolling away dims the film (cheap opacity, no filters). */}
+      {animated && <motion.div aria-hidden style={{ opacity: dim }} className="pointer-events-none absolute inset-0 bg-black" />}
 
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 grid" style={grid}>
         {Array.from({ length: cols }, (_, c) => (

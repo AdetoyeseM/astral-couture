@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion, useInView, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { FILTERS, works, type Filter, type Work } from "@/lib/works";
@@ -14,10 +14,8 @@ function Tile({ w, i, onOpen }: { w: Work; i: number; onOpen: () => void }) {
   const ref = useRef<HTMLButtonElement>(null);
   const vid = useRef<HTMLVideoElement>(null);
   const reduce = useReducedMotion();
-  const near = useInView(ref, { margin: "300px 0px" });
+  const near = useInView(ref, { margin: "150px 0px" });
   const playing = useInView(ref, { amount: 0.45 });
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
 
   // Only the clips actually on screen are decoding.
   useEffect(() => {
@@ -29,10 +27,10 @@ function Tile({ w, i, onOpen }: { w: Work; i: number; onOpen: () => void }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, clipPath: "inset(10% 10% 10% 10% round 18px)" }}
-      whileInView={{ opacity: 1, clipPath: "inset(0% 0% 0% 0% round 18px)" }}
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.9, delay: (i % 4) * 0.07, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.7, delay: (i % 4) * 0.06, ease: [0.22, 1, 0.36, 1] }}
       className="mb-3 break-inside-avoid sm:mb-5"
     >
       <button
@@ -42,7 +40,7 @@ function Tile({ w, i, onOpen }: { w: Work; i: number; onOpen: () => void }) {
         className="group relative block w-full overflow-hidden rounded-[18px] border border-line bg-surface text-left"
         style={{ aspectRatio: ratio(w) }}
       >
-        <motion.div style={reduce ? undefined : { y }} className="absolute inset-x-0 -inset-y-[6%]">
+        <div className="absolute inset-0">
           {w.kind === "photo" ? (
             <Image
               src={w.img}
@@ -71,7 +69,7 @@ function Tile({ w, i, onOpen }: { w: Work; i: number; onOpen: () => void }) {
               )}
             </>
           )}
-        </motion.div>
+        </div>
 
         <span aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/5 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
         <span className="absolute inset-x-0 bottom-0 p-4 text-white sm:p-5">

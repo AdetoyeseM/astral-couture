@@ -89,8 +89,8 @@ function subscribeTheme(cb: () => void) {
 export function ThemeToggle({ onDark = false }: { onDark?: boolean }) {
   const theme = useSyncExternalStore(
     subscribeTheme,
-    () => document.documentElement.dataset.theme ?? "light",
-    () => "light",
+    () => document.documentElement.dataset.theme ?? "dark",
+    () => "dark",
   );
   const flip = () => {
     const next = theme === "dark" ? "light" : "dark";
@@ -142,7 +142,7 @@ export function Nav() {
   return (
     <header
       className={`fixed inset-x-0 top-2 z-40 transition-all duration-500 ${
-        solid ? "backdrop-blur-md [background:color-mix(in_srgb,var(--bg)_80%,transparent)]" : "text-white"
+        solid ? "[background:color-mix(in_srgb,var(--bg)_92%,transparent)]" : "text-white"
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
