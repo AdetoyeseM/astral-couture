@@ -66,7 +66,6 @@ const P = {
 
 const V = {
   greenBeaded: clip("green-beaded-set", 576, 1024, "Hand-beaded green set", "Details that speak for themselves: a beaded bodice, fringe and a fitted skirt.", ["Occasion", "Studio"]),
-  peplum: clip("party-peplum", 464, 832, "Peplum, in motion", "A magenta peplum with embroidered lace, worn at the celebration.", ["Occasion"]),
   robe: clip("green-robe-corset", 480, 848, "Lime satin, beaded corset waist", "Wide satin sleeves over a smocked and beaded corseted waist.", ["Occasion"]),
   ankara: clip("ankara-set", 576, 1024, "Lace top, patterned panel", "A black lace-sleeved top with a patterned, panelled bottom.", ["Occasion"]),
   fringe: clip("pink-fringe", 480, 848, "Pink fringe corset dress", "Beaded fringe and sequins over a boned, fitted bodice.", ["Occasion"]),
@@ -81,7 +80,6 @@ export const works: Work[] = [
   V.greenBeaded,
   P.taupe,
   P.pinkLace,
-  V.peplum,
   P.redSuit,
   V.corsetGown,
   P.aqua,
