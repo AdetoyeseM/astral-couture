@@ -9,6 +9,7 @@
   --line: rgba(28, 26, 23, 0.14);
   --accent: #9a6f2e;
   --accent-soft: rgba(154, 111, 46, 0.12);
+  --gold-lit: #e6c887; /* gold for use over photography / video, in both themes */
 }
 
 :root[data-theme="dark"] {

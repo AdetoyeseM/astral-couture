@@ -1,6 +1,7 @@
 import { MotionConfig } from "framer-motion";
 import Hero from "@/components/Hero";
 import Reviews from "@/components/Reviews";
+import Works from "@/components/Works";
 import { Nav, TapeProgress } from "@/components/ui";
 import { About, Contact, Corsetry, Craft, Footer, Journey, Marquee, Process } from "@/components/Sections";
 
@@ -12,6 +13,7 @@ export default function Home() {
       <main>
         <Hero />
         <Marquee />
+        <Works />
         <About />
         <Craft />
         <Corsetry />

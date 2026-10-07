@@ -9,6 +9,7 @@ import peopleAsk from "@/assets/reviews/people-ask.jpg";
 import fitsPerfectly from "@/assets/reviews/fits-perfectly.jpg";
 import materials from "@/assets/reviews/materials.jpg";
 import brandedPackage from "@/assets/reviews/branded-package.jpg";
+import loveMyDress from "@/assets/reviews/love-my-dress.jpg";
 
 /* ───────────── Review content ───────────── */
 export const heroReview = {
@@ -43,6 +44,11 @@ const shots: { src: StaticImageData; alt: string; label: string }[] = [
     src: peopleAsk,
     alt: "WhatsApp message from a client: “People don dey ask for my tailor oo. I go bring dem.”",
     label: "“I go bring dem.”",
+  },
+  {
+    src: loveMyDress,
+    alt: "WhatsApp message from a client in a white dress with puffed lace sleeves: “Thank you. I love my dress.” Astral Couture replies, “I’m glad you do ma. Thank you ma.”",
+    label: "“I love my dress.”",
   },
   {
     src: brandedPackage,

@@ -86,7 +86,7 @@ function subscribeTheme(cb: () => void) {
   return () => mo.disconnect();
 }
 
-export function ThemeToggle() {
+export function ThemeToggle({ onDark = false }: { onDark?: boolean }) {
   const theme = useSyncExternalStore(
     subscribeTheme,
     () => document.documentElement.dataset.theme ?? "light",
@@ -103,7 +103,9 @@ export function ThemeToggle() {
     <button
       onClick={flip}
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
-      className="grid h-10 w-10 place-items-center rounded-full border border-line text-ink transition hover:border-accent hover:text-accent"
+      className={`grid h-10 w-10 place-items-center rounded-full border transition hover:border-accent hover:text-accent ${
+        onDark ? "border-white/30 text-white" : "border-line text-ink"
+      }`}
     >
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
         {theme === "dark" ? (
@@ -120,6 +122,7 @@ export function ThemeToggle() {
 }
 
 const links = [
+  ["Works", "#works"],
   ["Craft", "#craft"],
   ["Corsetry", "#corsetry"],
   ["Process", "#process"],
@@ -139,7 +142,7 @@ export function Nav() {
   return (
     <header
       className={`fixed inset-x-0 top-2 z-40 transition-all duration-500 ${
-        solid ? "backdrop-blur-md [background:color-mix(in_srgb,var(--bg)_80%,transparent)]" : ""
+        solid ? "backdrop-blur-md [background:color-mix(in_srgb,var(--bg)_80%,transparent)]" : "text-white"
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
@@ -149,19 +152,23 @@ export function Nav() {
             Astral <span className="italic text-accent">Couture</span>
           </span>
         </a>
-        <nav className="hidden items-center gap-9 md:flex">
+        <nav className="hidden items-center gap-6 md:flex lg:gap-9">
           {links.map(([l, h]) => (
-            <a key={h} href={h} className="group relative text-sm tracking-wide text-muted transition hover:text-ink">
+            <a key={h} href={h} className={`group relative text-sm tracking-wide transition ${solid ? "text-muted hover:text-ink" : "text-white/75 hover:text-white"}`}>
               {l}
               <span className="absolute -bottom-1 left-0 h-px w-0 bg-accent transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
         </nav>
         <div className="flex items-center gap-3">
-          <ThemeToggle />
+          <ThemeToggle onDark={!solid} />
           <a
             href="#contact"
-            className="hidden rounded-full border border-accent px-5 py-2.5 text-sm text-accent transition hover:bg-accent hover:text-bg sm:block"
+            className={`hidden rounded-full border px-5 py-2.5 text-sm transition sm:block ${
+              solid
+                ? "border-accent text-accent hover:bg-accent hover:text-bg"
+                : "border-[var(--gold-lit)] text-[var(--gold-lit)] hover:bg-[var(--gold-lit)] hover:text-black"
+            }`}
           >
             Book a fitting
           </a>

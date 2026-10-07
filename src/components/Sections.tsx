@@ -1,9 +1,10 @@
 "use client";
 
 import { AnimatePresence, motion, useInView, useMotionValue, useScroll, useSpring, useTransform, animate } from "framer-motion";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import { useEffect, useRef, useState } from "react";
 import logo from "@/assets/logo/astral-logo.jpg";
+import { photos } from "@/lib/works";
 import { Reveal, SectionHead } from "./ui";
 
 /* ───────────── Marquee ───────────── */
@@ -92,12 +93,12 @@ export function About() {
 }
 
 /* ───────────── The Craft (garment categories) ───────────── */
-const pieces = [
-  { t: "Bridal & Wedding Gowns", d: "Constructed and corseted for structure, comfort and a flawless line.", bg: "radial-gradient(circle at 30% 30%, var(--accent-soft) 0 18%, transparent 19%), radial-gradient(circle at 70% 60%, var(--accent-soft) 0 24%, transparent 25%)", size: "sm:col-span-2 sm:row-span-2" },
-  { t: "Aso-Ebi & Native Wear", d: "Aso-oke and traditional silhouettes, cut for celebration.", bg: "repeating-linear-gradient(135deg, var(--accent-soft) 0 10px, transparent 10px 22px)", size: "" },
+const pieces: { t: string; d: string; bg: string; size: string; img?: StaticImageData; pos?: string }[] = [
+  { t: "Bridal & Wedding Gowns", d: "Constructed and corseted for structure, comfort and a flawless line.", bg: "radial-gradient(circle at 30% 30%, var(--accent-soft) 0 18%, transparent 19%), radial-gradient(circle at 70% 60%, var(--accent-soft) 0 24%, transparent 25%)", size: "sm:col-span-2 sm:row-span-2", img: photos.pearlLaceDress, pos: "50% 30%" },
+  { t: "Aso-Ebi & Native Wear", d: "Aso-oke and traditional silhouettes, cut for celebration.", bg: "repeating-linear-gradient(135deg, var(--accent-soft) 0 10px, transparent 10px 22px)", size: "", img: photos.pinkLaceCorset, pos: "50% 30%" },
   { t: "Adire", d: "Indigenous Nigerian textiles, tailored into modern pieces.", bg: "repeating-radial-gradient(circle at 50% 50%, var(--accent-soft) 0 6px, transparent 6px 14px)", size: "" },
-  { t: "Corporate, Blazers & Suits", d: "Sharp, fitted tailoring for work and occasion.", bg: "repeating-linear-gradient(90deg, var(--accent-soft) 0 2px, transparent 2px 14px)", size: "" },
-  { t: "Gowns, Dresses & Party Wear", d: "Free-flowing gowns and evening pieces that move beautifully.", bg: "radial-gradient(circle, var(--accent) 0 1.5px, transparent 2px) 0 0/22px 22px", size: "sm:col-span-2" },
+  { t: "Corporate, Blazers & Suits", d: "Sharp, fitted tailoring for work and occasion.", bg: "repeating-linear-gradient(90deg, var(--accent-soft) 0 2px, transparent 2px 14px)", size: "", img: photos.redStuddedSuit, pos: "50% 22%" },
+  { t: "Gowns, Dresses & Party Wear", d: "Free-flowing gowns and evening pieces that move beautifully.", bg: "radial-gradient(circle, var(--accent) 0 1.5px, transparent 2px) 0 0/22px 22px", size: "sm:col-span-2", img: photos.blackCapeGown, pos: "50% 38%" },
 ];
 
 function Tilt({ children, className, style }: { children: React.ReactNode; className?: string; style?: React.CSSProperties }) {
@@ -139,11 +140,26 @@ export function Craft() {
           {pieces.map((p, i) => (
             <Reveal key={p.t} delay={i * 0.07} className={p.size}>
               <Tilt className="group relative h-full overflow-hidden rounded-2xl border border-line bg-surface p-7">
-                <div aria-hidden className="absolute inset-0 transition-transform duration-700 group-hover:scale-110" style={{ backgroundImage: p.bg }} />
-                <div className="relative flex h-full flex-col justify-end">
-                  <span className="mb-auto text-xs tracking-[0.3em] text-accent">0{i + 1}</span>
+                {p.img ? (
+                  <>
+                    <Image
+                      src={p.img}
+                      alt=""
+                      fill
+                      placeholder="blur"
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      style={{ objectPosition: p.pos }}
+                    />
+                    <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent" />
+                  </>
+                ) : (
+                  <div aria-hidden className="absolute inset-0 transition-transform duration-700 group-hover:scale-110" style={{ backgroundImage: p.bg }} />
+                )}
+                <div className={`relative flex h-full flex-col justify-end ${p.img ? "text-white" : ""}`}>
+                  <span className={`mb-auto text-xs tracking-[0.3em] ${p.img ? "text-[var(--gold-lit)]" : "text-accent"}`}>0{i + 1}</span>
                   <h3 className="display text-3xl leading-tight sm:text-[2rem]">{p.t}</h3>
-                  <p className="mt-2 max-w-sm text-sm leading-relaxed text-muted">{p.d}</p>
+                  <p className={`mt-2 max-w-sm text-sm leading-relaxed ${p.img ? "text-white/80" : "text-muted"}`}>{p.d}</p>
                 </div>
               </Tilt>
             </Reveal>
