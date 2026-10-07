@@ -52,30 +52,50 @@ const stats = [
 export function About() {
   return (
     <section id="about" className="mx-auto max-w-7xl px-6 py-28 sm:py-36">
-      <div className="grid gap-16 lg:grid-cols-[1fr_1.1fr]">
-        <SectionHead
-          eyebrow="The Designer"
-          title={
-            <>
-              Idowu <span className="italic text-accent">Esther</span>
-            </>
-          }
-        />
-        <Reveal delay={0.1} className="space-y-6 text-lg leading-relaxed text-muted">
-          <p>
-            Founder of Astral Couture, Esther has spent six years turning measurements into garments that fit like they were
-            always meant to. She owns the full production cycle in-house: cutting, construction, fitting and finishing.
-          </p>
-          <p>
-            Her specialism is structured garments. Cupped corsets, bustiers, caging and hip padding, backed by advanced
-            corsetry training completed in 2026. A remote consultation and fitting process serves international clients as
-            carefully as those in her Ibadan studio.
-          </p>
-          <p>
-            She also trains and mentors upcoming designers, bringing a degree in Childhood Education to a structured,
-            practical way of teaching the craft.
-          </p>
+      <div className="grid items-center gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
+        <Reveal className="relative mx-auto w-full max-w-md lg:max-w-none">
+          <div aria-hidden className="absolute -bottom-4 -right-4 h-full w-full rounded-[28px] border border-accent/50" />
+          <figure className="relative overflow-hidden rounded-[28px] border border-line bg-surface">
+            <Image
+              src={photos.taupeSuit}
+              alt="Idowu Esther, founder and lead designer of Astral Couture, in a tailored taupe two-piece with a yellow measuring tape around her neck"
+              placeholder="blur"
+              sizes="(max-width: 1024px) 90vw, 520px"
+              className="aspect-[4/5] w-full object-cover"
+              style={{ objectPosition: "50% 22%" }}
+            />
+            <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-6 pt-16 text-white">
+              <p className="display text-2xl">Idowu Esther</p>
+              <p className="mt-1 text-[0.65rem] uppercase tracking-[0.28em] text-[var(--gold-lit)]">Founder &amp; Lead Designer</p>
+            </figcaption>
+          </figure>
         </Reveal>
+
+        <div>
+          <SectionHead
+            eyebrow="The Designer"
+            title={
+              <>
+                Idowu <span className="italic text-accent">Esther</span>
+              </>
+            }
+          />
+          <Reveal delay={0.1} className="space-y-6 text-lg leading-relaxed text-muted">
+            <p>
+              Founder of Astral Couture, Esther has spent six years turning measurements into garments that fit like they were
+              always meant to. She owns the full production cycle in-house: cutting, construction, fitting and finishing.
+            </p>
+            <p>
+              Her specialism is structured garments. Cupped corsets, bustiers, caging and hip padding, backed by advanced
+              corsetry training completed in 2026. A remote consultation and fitting process serves international clients as
+              carefully as those in her Ibadan studio.
+            </p>
+            <p>
+              She also trains and mentors upcoming designers, bringing a degree in Childhood Education to a structured,
+              practical way of teaching the craft.
+            </p>
+          </Reveal>
+        </div>
       </div>
 
       <div className="mt-20 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line lg:grid-cols-4">
@@ -425,7 +445,10 @@ export function Contact() {
     <section id="contact" className="grain relative overflow-hidden bg-bg-alt px-6 py-28 sm:py-40">
       <div className="mx-auto max-w-7xl">
         <Reveal>
-          <p className="eyebrow mb-6">Begin</p>
+          <div className="mb-6 flex items-center gap-4">
+            <Image src={photos.taupeSuit} alt="" width={56} height={56} className="h-14 w-14 rounded-full object-cover ring-2 ring-accent/60" style={{ objectPosition: "50% 18%" }} />
+            <p className="eyebrow">Begin with Esther</p>
+          </div>
           <h2 className="display max-w-4xl text-5xl leading-[1] sm:text-8xl">
             Let&apos;s make something <span className="italic text-accent">that fits.</span>
           </h2>

@@ -306,23 +306,23 @@ export default function HeroVideo({ active, scroll }: { active: boolean; scroll:
       </motion.div>
 
       {/* Dark overlay: an even tint, a left-weighted ramp behind the headline, a vignette, and a faint gold wash for warmth. */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 bg-[#080706]/45" />
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-[#080706]/62" />
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           background: [
-            "linear-gradient(90deg, rgba(8,7,6,0.9) 0%, rgba(8,7,6,0.72) 35%, rgba(8,7,6,0.3) 70%, rgba(8,7,6,0.15) 100%)",
-            "linear-gradient(0deg, rgba(8,7,6,0.92) 0%, rgba(8,7,6,0.45) 22%, rgba(8,7,6,0) 45%)",
-            "linear-gradient(180deg, rgba(8,7,6,0.7) 0%, rgba(8,7,6,0) 24%)",
-            "radial-gradient(120% 90% at 50% 45%, rgba(0,0,0,0) 45%, rgba(0,0,0,0.55) 100%)",
+            "linear-gradient(90deg, rgba(8,7,6,0.94) 0%, rgba(8,7,6,0.82) 38%, rgba(8,7,6,0.5) 72%, rgba(8,7,6,0.32) 100%)",
+            "linear-gradient(0deg, rgba(8,7,6,0.95) 0%, rgba(8,7,6,0.6) 25%, rgba(8,7,6,0) 50%)",
+            "linear-gradient(180deg, rgba(8,7,6,0.78) 0%, rgba(8,7,6,0) 26%)",
+            "radial-gradient(120% 90% at 50% 45%, rgba(0,0,0,0) 35%, rgba(0,0,0,0.7) 100%)",
           ].join(", "),
         }}
       />
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 mix-blend-soft-light"
-        style={{ background: "linear-gradient(135deg, rgba(230,200,135,0.35), rgba(230,200,135,0) 55%)" }}
+        style={{ background: "linear-gradient(135deg, rgba(230,200,135,0.28), rgba(230,200,135,0) 55%)" }}
       />
 
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 grid" style={grid}>

@@ -57,7 +57,7 @@ const P = {
   brocade: photo("red-gold-brocade", redGoldBrocade, "Red & gold brocade, mermaid cut", "Flared bell sleeves and a fitted mermaid line with a side slit.", ["Occasion"], "40% 50%"),
   aqua: photo("aqua-lace-corset", aquaLaceCorset, "Aqua lace, sweetheart bodice", "A structured sweetheart bodice, sheer lace sleeves and a draped lace skirt.", ["Occasion"], "50% 50%"),
   pinkSequin: photo("pink-sequin-studio", pinkSequinStudio, "Beaded fringe bodice, sequin mermaid skirt", "Fresh off the mannequin in the Astral Couture studio.", ["Occasion", "Studio"], "50% 45%"),
-  taupe: photo("taupe-suit", taupeSuit, "Taupe tailored two-piece", "A soft-shouldered blazer with high-waisted, pleated trousers.", ["Tailoring"], "50% 30%"),
+  taupe: photo("taupe-suit", taupeSuit, "The designer, in taupe", "Idowu Esther in a soft-shouldered blazer and high-waisted, pleated trousers, tape measure at her neck.", ["Tailoring"], "50% 30%"),
   redSuit: photo("red-studded-suit", redStuddedSuit, "Crystal-studded red suit", "A fitted red blazer with hand-set crystal detail and wide-leg trousers.", ["Tailoring"], "50% 25%"),
   redPortrait: photo("red-studded-portrait", redStuddedPortrait, "Crystal-studded lapels", "Hand-set crystals following the line of the lapel and shoulder.", ["Tailoring"], "50% 30%"),
   plaid: photo("plaid-blazer", plaidBlazer, "Plaid tailoring in red & white", "A sharp lapel, a defined waist and checks matched across the seams.", ["Tailoring"], "50% 30%"),
