@@ -126,6 +126,7 @@ const links = [
   ["Craft", "#craft"],
   ["Corsetry", "#corsetry"],
   ["Process", "#process"],
+  ["Academy", "#academy"],
   ["Journey", "#journey"],
   ["Reviews", "#reviews"],
   ["Contact", "#contact"],
@@ -152,7 +153,7 @@ export function Nav() {
             Astral <span className="italic text-accent">Couture</span>
           </span>
         </a>
-        <nav className="hidden items-center gap-6 md:flex lg:gap-9">
+        <nav className="hidden items-center gap-5 md:flex lg:gap-8">
           {links.map(([l, h]) => (
             <a key={h} href={h} className={`group relative text-sm tracking-wide transition ${solid ? "text-muted hover:text-ink" : "text-white/75 hover:text-white"}`}>
               {l}
@@ -164,7 +165,7 @@ export function Nav() {
           <ThemeToggle onDark={!solid} />
           <a
             href="#contact"
-            className={`hidden rounded-full border px-5 py-2.5 text-sm transition sm:block ${
+            className={`hidden rounded-full border px-5 py-2.5 text-sm transition lg:block ${
               solid
                 ? "border-accent text-accent hover:bg-accent hover:text-bg"
                 : "border-[var(--gold-lit)] text-[var(--gold-lit)] hover:bg-[var(--gold-lit)] hover:text-black"

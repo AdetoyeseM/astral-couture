@@ -43,3 +43,6 @@ next-env.d.ts
 # personal / local
 /cv
 /.claude
+
+# raw phone footage (hundreds of MB) - the site uses trimmed copies in public/academy
+/src/assets/catalogues/IMG_*

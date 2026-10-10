@@ -1,4 +1,5 @@
 import { MotionConfig } from "framer-motion";
+import Academy from "@/components/Academy";
 import Hero from "@/components/Hero";
 import Reviews from "@/components/Reviews";
 import Works from "@/components/Works";
@@ -18,6 +19,7 @@ export default function Home() {
         <Craft />
         <Corsetry />
         <Process />
+        <Academy />
         <Journey />
         <Reviews />
         <Contact />

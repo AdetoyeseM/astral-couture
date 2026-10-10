@@ -388,6 +388,9 @@ export function Journey() {
             Garment construction, sewing techniques, pattern drafting and production, taught through a structured, practical
             programme.
           </p>
+          <a href="#academy" className="mt-6 inline-flex items-center gap-2 text-sm tracking-wide text-[var(--gold-lit)] transition hover:gap-3">
+            See the academy <span aria-hidden>→</span>
+          </a>
         </div>
         <div className="display text-6xl sm:text-8xl">
           8<span className="text-2xl opacity-60"> trained</span>
